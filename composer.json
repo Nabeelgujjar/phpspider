@@ -1,7 +1,7 @@
 {
   "name": "mubin-khalid/spider",
   "description": "PHP curl script to get page source.",
-  "type": "PHP curl",
+  "type": "PHP",
   "version": 1.0,
   "license": "MIT",
   "authors": [
