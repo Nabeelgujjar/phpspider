@@ -2,6 +2,8 @@
 
 namespace Mubin\Spider\Helper;
 
+use \Storage;
+
 class Helper
 {
     /**
