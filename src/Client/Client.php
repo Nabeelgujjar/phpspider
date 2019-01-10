@@ -52,7 +52,7 @@ class Client
         if ($info['http_code'] == 200) {
             return $data;
         } else {
-            return json_decode(['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url]);
+            return json_encode(['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url]);
         }
     }
 
@@ -94,7 +94,7 @@ class Client
         if ($info['http_code'] == 200) {
             return $data;
         } else {
-            return json_decode(['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url]);
+            return json_encode(['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url]);
         }
     }
 }
