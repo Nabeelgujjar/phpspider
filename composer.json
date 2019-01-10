@@ -1,13 +1,13 @@
 {
-  "name": "mubin-khalid/spider",
+  "name": "Nabeelgujjar/phpspider",
   "description": "PHP curl script to get page source.",
   "type": "PHP",
   "version": 1.0,
   "license": "MIT",
   "authors": [
     {
-      "name": "Mubin Khalid",
-      "email": "mbnmughal30@gmail.com"
+      "name": "Nabeel Shaukat",
+      "email": "nabeelgujjar@hotmail.com"
     }
   ],
   "minimum-stability": "stable",
