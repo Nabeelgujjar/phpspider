@@ -22,21 +22,21 @@ class Client
         $cookie = $options['cookie'];
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_ENCODING, $this->options['encoding']);
+        curl_setopt($ch, CURLOPT_ENCODING, isset($options['encoding']) ? $options['encoding'] : null);
 
         if (isset($options['header']) && !empty($options['header'])) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $options['header']);
         }
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, $this->options['header']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, $this->options['transfer']);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $this->options['timeout']);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $this->options['follow_location']);
-        curl_setopt($ch, CURLOPT_MAXREDIRS, $this->options['redirects']);
-        curl_setopt($ch, CURLOPT_USERAGENT, $this->options[sprintf('user-agent:%s', $options['user-agent'])]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,isset($options['transfer']) ? $options['transfer'] : null);
+        curl_setopt($ch, CURLOPT_PROXY, isset($options['proxy']) ? $options['proxy'] : null);
+        curl_setopt($ch, CURLOPT_TIMEOUT, isset($options['timeout']) ? $options['timeout'] : null);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, isset($options['follow_location']) ? $options['follow_location'] : null);
+        curl_setopt($ch, CURLOPT_MAXREDIRS, isset($options['redirects']) ? $options['redirects'] : null);
+        curl_setopt($ch, CURLOPT_USERAGENT, isset($options['user-agent']) ? $options['user-agent'] : null);
         curl_setopt($ch, CURLOPT_COOKIEJAR, realpath($cookie));
         curl_setopt($ch, CURLOPT_COOKIEFILE, realpath($cookie));
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->options['ssl']);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, isset($options['ssl']) ? $options['ssl'] : false);
         if (isset($options['referrer']) && $options['referrer'] != false) {
             curl_setopt($ch, CURLOPT_REFERER, $options['referrer']);
         } else {
@@ -52,7 +52,7 @@ class Client
         if ($info['http_code'] == 200) {
             return $data;
         } else {
-            return ['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url];
+            return json_decode(['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url]);
         }
     }
 
@@ -68,15 +68,15 @@ class Client
             curl_setopt($ch, CURLOPT_HTTPHEADER, $options['header']);
         }
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, $this->options['header']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, $this->options['transfer']);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $this->options['timeout']);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $this->options['follow_location']);
-        curl_setopt($ch, CURLOPT_MAXREDIRS, $this->options['redirects']);
-        curl_setopt($ch, CURLOPT_USERAGENT, $this->options[sprintf('user-agent:%s', $options['user-agent'])]);
+        curl_setopt($ch, CURLOPT_PROXY, isset($options['proxy']) ? $options['proxy'] : null);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, isset($options['transfer']) ? $options['transfer'] : null);
+        curl_setopt($ch, CURLOPT_TIMEOUT, isset($options['timeout']) ? $options['timeout'] : null);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, isset($options['follow_location']) ? $options['follow_location'] : null);
+        curl_setopt($ch, CURLOPT_MAXREDIRS, isset($options['redirects']) ? $options['redirects'] : null);
+        curl_setopt($ch, CURLOPT_USERAGENT, isset($options['user-agent']) ? $options['user-agent'] : null);
         curl_setopt($ch, CURLOPT_COOKIEJAR, realpath($cookie));
         curl_setopt($ch, CURLOPT_COOKIEFILE, realpath($cookie));
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->options['ssl']);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, isset($options['ssl']) ? $options['ssl'] : false);
         if (isset($options['referrer']) && $options['referrer'] != false) {
             curl_setopt($ch, CURLOPT_REFERER, $options['referrer']);
         } else {
@@ -94,7 +94,7 @@ class Client
         if ($info['http_code'] == 200) {
             return $data;
         } else {
-            return ['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url];
+            return json_decode(['error' => 'Unable to get data', 'status_code' => $info['http_code'], 'request_url' => $url]);
         }
     }
 }
